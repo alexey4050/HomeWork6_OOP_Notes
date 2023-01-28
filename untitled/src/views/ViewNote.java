@@ -1,5 +1,7 @@
 package views;
 
+import loggers.FileLogger;
+import loggers.LogRepositoryFileDecorator;
 import model.Note;
 import controllers.NoteController;
 import model.*;
@@ -26,8 +28,11 @@ public class ViewNote {
         Repository repository;
 
         fileOperation = new FileOperationImpl("notes.txt");
-        repository = new RepositoryFile(fileOperation);
-        this.noteController = new NoteController(repository);
+        repository = new LogRepositoryFileDecorator(
+                new RepositoryFile(fileOperation),
+                new FileLogger(new AppendFileOperationImpl("logi")));
+        NoteController noteController = new NoteController(repository);
+        //this.noteController = new NoteController(repository);
 
         while (true) {
 

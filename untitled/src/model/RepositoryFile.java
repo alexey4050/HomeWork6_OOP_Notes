@@ -23,6 +23,17 @@ public class RepositoryFile implements Repository {
     }
 
     @Override
+    public Note noteRead(String id) {
+        List<Note> notes = getAllNotes();
+        return notes.stream().filter(p->p.getId().equals(id)).findFirst().orElse(null);
+    }
+
+    @Override
+    public void exit() {
+
+    }
+
+    @Override
     public void createNote(Note note) {
         List<Note> notes = getAllNotes();
         int max = 0;

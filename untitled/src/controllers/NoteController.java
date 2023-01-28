@@ -16,14 +16,11 @@ public class NoteController {
         repository.createNote(note);
     }
 
-    public Note noteRead(String id) throws Exception {
-        List<Note> notes = repository.getAllNotes();
-        for (Note note : notes) {
-            if (note.getId().equals(id)) {
-                return note;
-            }
-        }
-        throw new Exception("Запись с id:" + id + " не найдена");
+    public Note noteRead(String id) {
+        return  repository.noteRead(id);
+    }
+    public void exit(){
+        repository.exit();
     }
 
     public List<Note> readAll() {

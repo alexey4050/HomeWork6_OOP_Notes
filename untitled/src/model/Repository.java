@@ -7,4 +7,6 @@ public interface Repository {
         void createNote (Note note);
         void updateNote (Note note);
         void deleteNote (Note note);
+        Note noteRead(String id);
+        void exit();
 }
